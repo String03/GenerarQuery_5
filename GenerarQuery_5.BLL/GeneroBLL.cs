@@ -21,5 +21,11 @@ namespace GenerarQuery_5.BLL
         {
             dAO.Alta(genero);
         }
+
+        public void Baja(Genero genero)
+        {
+            dAO.Baja(genero);
+        }
+
     }
 }

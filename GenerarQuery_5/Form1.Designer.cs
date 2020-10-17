@@ -67,6 +67,7 @@
             this.btn_baja_genero.TabIndex = 2;
             this.btn_baja_genero.Text = "Baja";
             this.btn_baja_genero.UseVisualStyleBackColor = true;
+            this.btn_baja_genero.Click += new System.EventHandler(this.btn_baja_genero_Click);
             // 
             // btn_modificar_genero
             // 

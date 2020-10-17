@@ -53,5 +53,18 @@ namespace GenerarQuery_5
         {
             txt_nombre_genero.Text = string.Empty;
         }
+
+        private Genero SeleccionarGenero()
+        {
+            return (Genero)grillaGenero.SelectedRows[0].DataBoundItem;
+        }
+
+        private void btn_baja_genero_Click(object sender, EventArgs e)
+        {
+            var genero = SeleccionarGenero();
+            generoBLL.Baja(genero);
+            RefrescarGrilla();
+            LimpiarCampos();
+        }
     }
 }

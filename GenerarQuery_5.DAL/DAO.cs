@@ -106,7 +106,26 @@ namespace GenerarQuery_5.DAL
 
         public void Baja(T entidad)
         {
-            throw new NotImplementedException();
+            string query = CrearQueryBaja(entidad);
+            EjecutarQuery.ExecuteNonQuery(query);
+        }
+
+        private string CrearQueryBaja(T entidad)
+        {
+            string query = $"delete from {CrearTablas()} where 1 = 1 {IgualarId(entidad)}";
+            return query;
+        }
+
+        private object IgualarId(T entidad)
+        {
+            return string.Join(" ",typeof(T).GetProperties()
+                .Where(k => TieneClavePrimariaAttribute(k))
+                .Select(s => CrearExpresionIgualacion(s, entidad)).ToList());
+        }
+
+        private object CrearExpresionIgualacion(PropertyInfo s, T entidad)
+        {
+            return "and " + s.Name + " = " + CrearExpresionDerecha(s, entidad);
         }
 
         public IEnumerable<T> Listar()
