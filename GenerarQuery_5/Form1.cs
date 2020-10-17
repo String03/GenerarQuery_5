@@ -66,5 +66,14 @@ namespace GenerarQuery_5
             RefrescarGrilla();
             LimpiarCampos();
         }
+
+        private void btn_modificar_genero_Click(object sender, EventArgs e)
+        {
+            var genero = SeleccionarGenero();
+            genero.Nombre = txt_nombre_genero.Text.Trim();
+            generoBLL.Modificar(genero);
+            RefrescarGrilla();
+            LimpiarCampos();
+        }
     }
 }

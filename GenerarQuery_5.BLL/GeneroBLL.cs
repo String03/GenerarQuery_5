@@ -27,5 +27,9 @@ namespace GenerarQuery_5.BLL
             dAO.Baja(genero);
         }
 
+        public void Modificar(Genero genero)
+        {
+            dAO.Modificar(genero);
+        }
     }
 }

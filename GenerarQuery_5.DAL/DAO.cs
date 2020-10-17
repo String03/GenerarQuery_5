@@ -156,7 +156,22 @@ namespace GenerarQuery_5.DAL
 
         public void Modificar(T entidad)
         {
-            throw new NotImplementedException();
+            string query = CrearQueryModificar(entidad);
+            EjecutarQuery.ExecuteNonQuery(query);
+        }
+
+        private string CrearQueryModificar(T entidad)
+        {
+            string query = $"update {CrearTablas()} set {CrearExpresionUpdate(entidad)} where 1 = 1 {IgualarId(entidad)}";
+            return query;
+        }
+
+        private object CrearExpresionUpdate(T entidad)
+        {
+            return string.Join(",",typeof(T).GetProperties()
+                .Where(k => !TieneClavePrimariaAttribute(k))
+                .Select(u => u.Name + " = " + CrearExpresionDerecha(u, entidad))
+                .ToList());
         }
     }
 }
