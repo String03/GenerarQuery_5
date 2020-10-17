@@ -16,5 +16,10 @@ namespace GenerarQuery_5.BLL
         {
             return dAO.Listar();
         }
+
+        public void Alta(Genero genero)
+        {
+            dAO.Alta(genero);
+        }
     }
 }
